@@ -6,9 +6,11 @@ class WeatherModel {
   final double minTemp;
   final double maxTemp;
   final String image;
+  final DateTime date;
 
-  WeatherModel(
+  WeatherModel( 
       {required this.cityName,
+      required this.date,
       required this.image,
       required this.lastUpdate,
       required this.temp,
@@ -16,14 +18,15 @@ class WeatherModel {
       required this.minTemp,
       required this.maxTemp});
 
-  factory WeatherModel.fromJson(json) {
+  factory WeatherModel.fromJson(json,int index) {
     return WeatherModel(
         cityName: json['location']['name'],
         lastUpdate: DateTime.parse(json['current']['last_updated']),
-        temp: json['forecast']['forecastday'][0]['day']['avgtemp_c'],
-        weatherState: json['forecast']['forecastday'][0]['day']['condition']['text'],
-        minTemp: json['forecast']['forecastday'][0]['day']['mintemp_c'],
-        maxTemp: json['forecast']['forecastday'][0]['day']['maxtemp_c'],
-        image: json['forecast']['forecastday'][0]['day']['condition']['icon']);
+        date: DateTime.parse(json['forecast']['forecastday'][index]['date']),
+        temp: json['forecast']['forecastday'][index]['day']['avgtemp_c'],
+        weatherState: json['forecast']['forecastday'][index]['day']['condition']['text'],
+        minTemp: json['forecast']['forecastday'][index]['day']['mintemp_c'],
+        maxTemp: json['forecast']['forecastday'][index]['day']['maxtemp_c'],
+        image: json['forecast']['forecastday'][index]['day']['condition']['icon']);
   }
 }

@@ -10,13 +10,16 @@ class WeatherService {
 
   WeatherService( this.dio);
 
-  Future<WeatherModel> getCurrentWeather({required String cityName}) async {
+  Future<List<WeatherModel>> getCurrentWeather({required String cityName}) async {
     try {
   Response response = await dio.get(
-      '$baseUrl/forecast.json?key=$apiKey&q=$cityName&days=1');
-  
-  WeatherModel weatherModel=WeatherModel.fromJson(response.data);
-  return weatherModel;
+      '$baseUrl/forecast.json?key=$apiKey&q=$cityName&days=3');
+
+  WeatherModel weatherModelToDay=WeatherModel.fromJson(response.data,0);
+  WeatherModel weatherModelSecondDay=WeatherModel.fromJson(response.data,1);
+  WeatherModel weatherModelThirdDay=WeatherModel.fromJson(response.data,2);
+  List<WeatherModel> weatherModelList=[weatherModelToDay,weatherModelSecondDay,weatherModelThirdDay];
+  return weatherModelList;
 }on DioException  catch (e) {
   final String errorMessege=e.response?.data['error']['message']?? 'oops there was an error, please try again'; // =e at found null
  throw Exception(errorMessege);

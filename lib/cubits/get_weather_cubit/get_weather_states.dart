@@ -7,7 +7,7 @@ class WeatherInitialState extends WeatherState {}
 
 class WeatherLoadedState extends WeatherState {
 
-  final WeatherModel weatherModel;
+  final List<WeatherModel> weatherModel;
   WeatherLoadedState({required this.weatherModel});
 }
 
