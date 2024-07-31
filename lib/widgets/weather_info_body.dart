@@ -60,8 +60,8 @@ class WeatherInfoBody extends StatelessWidget {
                     errorBuilder: (context, error, stackTrace) =>
                         const Icon(Icons.error),
                   ),
-                   Text(
-                    weatherModelList[0].temp.round().toString(),
+                    Text(
+                    '${weatherModelList[0].temp.round()}°',
                     style:const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 35,
@@ -70,13 +70,13 @@ class WeatherInfoBody extends StatelessWidget {
                    Column(
                     children: [
                       Text(
-                        'Maxtemp: ${weatherModelList[0].maxTemp.round()}',
+                        'Maxtemp: ${weatherModelList[0].maxTemp.round()}°',
                         style:const TextStyle(
                           fontSize: 16,
                         ),
                       ),
                        Text(
-                        'Mintemp: ${weatherModelList[0].minTemp.round()}',
+                        'Mintemp: ${weatherModelList[0].minTemp.round()}°',
                         style:const TextStyle(
                           fontSize: 16,
                         ),
@@ -99,7 +99,7 @@ class WeatherInfoBody extends StatelessWidget {
                 height: 32,
               ),
                Container(
-                  width: 270,
+                  width: 300,
                   height: 200,
                   padding: const EdgeInsets.only(left: 8,right: 8,top: 8),
                   decoration: BoxDecoration(
@@ -109,7 +109,7 @@ class WeatherInfoBody extends StatelessWidget {
                   child: ListView.builder(
                     itemCount: weatherModelList.length,
                     itemBuilder: (context, index) {
-                      return CustomListTile(image: weatherModelList[index].image,title: Jiffy.parse(weatherModelList[index].date.toString()).EEEE, date: '${weatherModelList[index].date.day}/${weatherModelList[index].date.month}');
+                      return CustomListTile(image: weatherModelList[index].image,title: Jiffy.parse(weatherModelList[index].date.toString()).EEEE, maxTemp: weatherModelList[index].maxTemp, minTemp: weatherModelList[index].minTemp,);
                     }
                   ),
                 ),

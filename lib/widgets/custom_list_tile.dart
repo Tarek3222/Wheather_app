@@ -4,11 +4,12 @@ class CustomListTile extends StatelessWidget {
   const CustomListTile(
       {super.key,
       required this.title,
-      required this.date,
-      required this.image});
+      required this.maxTemp,
+      required this.image, required this.minTemp});
 
   final String title;
-  final String date;
+  final double maxTemp;
+  final double minTemp;
   final String image;
   @override
   Widget build(BuildContext context) {
@@ -25,7 +26,7 @@ class CustomListTile extends StatelessWidget {
         style: const TextStyle(color: Colors.white, fontSize: 16),
       ),
       trailing: Text(
-        date,
+        "${maxTemp.round()}° ${minTemp.round()}°",
         style: const TextStyle(color: Colors.white, fontSize: 16),
       ),
     );
