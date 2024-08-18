@@ -43,7 +43,10 @@ class HomeView extends StatelessWidget {
             return  WeatherInfoBody(
               weatherModelList: state.weatherModel,
             );
-          }else{
+          }else if(state is WeatherLoadingState){
+            return const Center(child: CircularProgressIndicator());
+          }
+          else{
             return const Center(child: Text('Something went wrong, try again later'));
           }
         } ,
